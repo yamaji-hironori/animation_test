@@ -1,0 +1,10 @@
+.webgl
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+    filter: blur(40px);
+    background: #ffffff;
+    opacity: 1;
+}
