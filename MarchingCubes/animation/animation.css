@@ -1,0 +1,40 @@
+#webgl
+{
+    /* position: fixed; */
+    /* top: 0; */
+    /* left: 0; */
+    outline: none;
+    filter: blur(40px);
+    background: #ffffff;
+    opacity: 1;
+    /* margin: -20px; */
+}
+
+.fixed-background {
+  min-height: 100vh;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+.ScrollArea {
+    height: 300vh;
+}
+
+.ScrollArea_Text {
+  max-width: 65vw;
+  margin: auto;
+}
+.ScrollArea_Content {
+  position: relative;
+  z-index: 1;
+  font-family: 'Cabin', sans-serif;
+  font-size: 6vmin;
+}
+
+.CanvasFrame {
+  position: sticky;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+}

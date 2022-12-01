@@ -62,15 +62,18 @@ scene.add(ambientLight)
 /**
  * Sizes
  */
+const root_element = document.documentElement;
 const sizes = {
-    width: window.innerWidth,
+    // width: window.innerWidth - 20,
+    width: root_element.clientWidth,
     height: window.innerHeight
 }
 
 window.addEventListener('resize', () =>
 {
     // Update sizes
-    sizes.width = window.innerWidth
+    // sizes.width = window.innerWidth - 20
+    sizes.width = root_element.clientWidth
     sizes.height = window.innerHeight
 
     // Update camera
@@ -79,13 +82,14 @@ window.addEventListener('resize', () =>
 
     // Update renderer
     renderer.setSize(sizes.width, sizes.height)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    // renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    renderer.setPixelRatio(window.devicePixelRatio)
 })
 
 /**
  * Camera
  */
-const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000)
+const camera = new THREE.PerspectiveCamera(45, root_element.clientWidth / window.innerHeight, 1, 10000)
 camera.position.set(effectController.camera_pos_x, effectController.camera_pos_y, effectController.camera_pos_z)
 scene.add(camera)
 

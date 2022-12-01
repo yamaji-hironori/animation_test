@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./animation/style.css">
-    <title>Animation Test</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./animation/style.css">
+  <link rel="stylesheet" href="./animation/animation.css">
+  <title>Animation Test</title>
 </head>
 <body>
-    <canvas class="webgl"></canvas>
-    <script type="text/javascript" src="./animation/three.min.js"></script>
-    <script type="text/javascript" src="./animation/MarchingCubes.js"></script>
-    <script type="text/javascript" src="./animation/script.js"></script>
+  <section class="section">
+    <h2>START SECTION</h2>
+  </section>
+  <!-- /.CanvasFrame -->
+  <section id="WebglScrollArea" class="ScrollArea">
+    <div class="CanvasFrame">
+      <canvas id="webgl" class="webgl fixed-background"></canvas>
+    </div>
+    <div class="ScrollArea_Text">
+      <h2 class="ScrollArea_Content">
+        Lorem ipsum dolor sit amet,
+        consectetur adipisicing elit. Quisquam,
+        ut. Facilis placeat iste qui voluptatum.
+        Repellat porro, cumque magni tempore?
+      </h2>
+    </div>
+    <!-- /.ScrollArea_Text -->
+  </section>
+  <section class="section">
+    <h2>END SECTION</h2>
+  </section>
+  <script type="text/javascript" src="./animation/three.min.js"></script>
+  <script type="text/javascript" src="./animation/MarchingCubes.js"></script>
+  <script type="text/javascript" src="./animation/script.js"></script>
+  <script type="text/javascript" src="./animation/ScrollArea.js"></script>
 </body>
 </html>
