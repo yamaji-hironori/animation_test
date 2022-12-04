@@ -1,0 +1,17 @@
+/**
+ * Bem React style
+ * BlockName-ElemName_modName_modVal
+ */
+.ScrollArea {
+  height: 300vh;
+}
+.ScrollArea_Text {
+  margin: auto;
+  max-width: 65vw;
+}
+.ScrollArea_Content {
+  font-family: "Cabin", sans-serif;
+  font-size: 6vmin;
+  position: relative;
+  z-index: 1;
+}/*# sourceMappingURL=ScrollArea.css.map */

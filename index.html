@@ -4,18 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./animation/style.css">
-  <link rel="stylesheet" href="./animation/animation.css">
+  <link rel="stylesheet" href="./animation/blocks/Common/Common.css">
+  <link rel="stylesheet" href="./animation/blocks/Section/Section.css">
+  <link rel="stylesheet" href="./animation/blocks/Webgl/Webgl.css">
+  <link rel="stylesheet" href="./animation/blocks/ScrollArea/ScrollArea.css">
   <title>Animation Test</title>
 </head>
 <body>
-  <section class="section">
+  <section class="Section">
     <h2>START SECTION</h2>
   </section>
-  <!-- /.CanvasFrame -->
   <section id="WebglScrollArea" class="ScrollArea">
     <div class="CanvasFrame">
-      <canvas id="webgl" class="webgl fixed-background"></canvas>
+      <canvas id="Webgl"></canvas>
     </div>
+    <!-- /.CanvasFrame -->
     <div class="ScrollArea_Text">
       <h2 class="ScrollArea_Content">
         Lorem ipsum dolor sit amet,
@@ -26,14 +29,13 @@
     </div>
     <!-- /.ScrollArea_Text -->
   </section>
-  <section class="section">
+  <section class="Section">
     <h2>END SECTION</h2>
   </section>
-  <script type="text/javascript" src="./animation/three.min.js"></script>
-  <script type="text/javascript" src="./animation/MarchingCubes.js"></script>
-  <!-- <script type="text/javascript" src="./animation/script.js"></script> -->
-  <script type="text/javascript" src="./animation/script_debug.js"></script>
-  <script type="text/javascript" src="./animation/ScrollArea.js"></script>
+  <script type="text/javascript" src="./animation/lib/three.min.js"></script>
+  <script type="text/javascript" src="./animation/lib/MarchingCubes.js"></script>
+  <script type="text/javascript" src="./animation/blocks/Webgl/Webgl.js"></script>
+  <script type="text/javascript" src="./animation/blocks/ScrollArea/ScrollArea.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/lil-gui@0.17"></script>
   <script type="text/javascript" src="./animation/debug.js"></script>

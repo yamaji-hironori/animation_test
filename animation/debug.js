@@ -19,7 +19,7 @@ gui.add(effectController, 'lightIntensity', 0, 1, 0.1).name('光の強さ');
 gui.add(effectController, 'blur', 1, 100, 1)
     .name('ぼかし')
     .onChange(blur => {
-        document.getElementById('webgl').style.filter = `blur(${blur}px)`;
+        document.getElementById('Webgl').style.filter = `blur(${blur}px)`;
     });
 gui.add(effectController, 'opacitySpeed', {'線形': 1, '2乗': 2, '3乗': 3}).name('フェードの変化量');
 

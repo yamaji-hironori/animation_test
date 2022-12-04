@@ -1,0 +1,17 @@
+/**
+ * Bem React style
+ * BlockName-ElemName_modName_modVal
+ */
+.Section {
+  align-items: center;
+  background: #d5ffef;
+  color: #ffffff;
+  display: flex;
+  font-family: "Cabin", sans-serif;
+  font-size: 7vmin;
+  height: 100vh;
+  padding-left: 10%;
+  padding-right: 10%;
+  position: relative;
+  text-transform: uppercase;
+}/*# sourceMappingURL=Section.css.map */

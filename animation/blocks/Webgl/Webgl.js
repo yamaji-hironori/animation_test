@@ -1,4 +1,3 @@
-
 const effectController = {
     ballSpeed: 0.1, // speed of ball movement
     numBlobs: 20, // number of balls
@@ -23,27 +22,12 @@ let colors = {
     color4:  0xFFA500 ,
     color5:  0xFFDC96 ,
 };
-// let colors = {
-//     color1: new THREE.Color( 0x0069FF ),
-//     color2: new THREE.Color( 0x3CBEF0 ),
-//     color3: new THREE.Color( 0xAFDCFA ),
-//     color4: new THREE.Color( 0xFFA500 ),
-//     color5: new THREE.Color( 0xFFDC96 ),
-// };
-// const shuffle = ([...array]) => {
-//   for (let i = array.length - 1; i >= 0; i--) {
-//     const j = Math.floor(Math.random() * (i + 1));
-//     [array[i], array[j]] = [array[j], array[i]];
-//   }
-//   return array;
-// }
-// colors = shuffle(colors)
 
 /**
  * Base
  */
 // Canvas
-const canvas = document.querySelector('canvas.webgl')
+const canvas = document.querySelector('canvas#Webgl')
 
 // Scene
 const scene = new THREE.Scene()
@@ -74,7 +58,6 @@ scene.add(ambientLight)
  */
 const root_element = document.documentElement;
 const sizes = {
-    // width: window.innerWidth - 20,
     width: root_element.clientWidth,
     height: window.innerHeight
 }
@@ -82,7 +65,6 @@ const sizes = {
 window.addEventListener('resize', () =>
 {
     // Update sizes
-    // sizes.width = window.innerWidth - 20
     sizes.width = root_element.clientWidth
     sizes.height = window.innerHeight
 
@@ -92,7 +74,6 @@ window.addEventListener('resize', () =>
 
     // Update renderer
     renderer.setSize(sizes.width, sizes.height)
-    // renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.setPixelRatio(window.devicePixelRatio)
 })
 
