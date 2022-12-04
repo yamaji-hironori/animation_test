@@ -1,78 +1,43 @@
 
-const GUI = lil.GUI;
-const gui = new GUI();
-
-const myObject = {
-	myBoolean: true,
-	myFunction: function() {
-        console.log('test');
-    },
-	myString: 'lil-gui',
-	myNumber: 1
-};
-
-gui.add( myObject, 'myBoolean' );  // Checkbox
-gui.add( myObject, 'myFunction' ); // Button
-gui.add( myObject, 'myString' );   // Text Field
-gui.add( myObject, 'myNumber' );   // Number Field
-
-// Add sliders to number fields by passing min and max
-gui.add( myObject, 'myNumber', 0, 1 );
-gui.add( myObject, 'myNumber', 0, 100, 2 ); // snap to even numbers
-
-// Create dropdowns by passing an array or object of named values
-gui.add( myObject, 'myNumber', [ 0, 1, 2 ] );
-gui.add( myObject, 'myNumber', { Label1: 0, Label2: 1, Label3: 2 } );
-
-// Chainable methods
-// gui.add( myObject, 'myProperty' )
-// 	.name( 'Custom Name' )
-// 	.onChange( value => {
-// 		console.log( value );
-// 	} );
-
-// Create color pickers for multiple color formats
-const colorFormats = {
-	string: '#ffffff',
-	int: 0xffffff,
-	object: { r: 1, g: 1, b: 1 },
-	array: [ 1, 1, 1 ]
-};
-
-gui.addColor( colorFormats, 'string' );
-
-
-
-
 const effectController = {
-    speed: 0.1, // speed of ball movement
-    numBlobs: 10, // number of balls
-    scale_x: 700, // marchingCube scale x
-    scale_y: 700, // marchingCube scale y
-    scale_z: 70, // marchingCube scale z
+    ballSpeed: 0.1, // speed of ball movement
+    numBlobs: 20, // number of balls
+    scaleXY: 700, // marchingCube scale x
+    scaleX: 1000, // marchingCube scale x
+    scaleY: 1000, // marchingCube scale y
+    scaleZ: 70, // marchingCube scale z
     camera_pos_x: 0, // camera position x
     camera_pos_y: 0, // camera position y
     camera_pos_z: 600, // camera position z
+    blur: 40,
+    opacitySpeed: 2,
+    lightIntensity: 0.3,
+    isolation: 80,
 }
 
 const randomOffset = Math.random() * (2 * Math.PI)
-let rainbow = [
-    new THREE.Color( 0xff0000 ),
-    new THREE.Color( 0xff7f00 ),
-    new THREE.Color( 0xffff00 ),
-    new THREE.Color( 0x00ff00 ),
-    new THREE.Color( 0x0000ff ),
-    new THREE.Color( 0x4b0082 ),
-    new THREE.Color( 0x9400d3 )
-]
-const shuffle = ([...array]) => {
-  for (let i = array.length - 1; i >= 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-rainbow = shuffle(rainbow)
+let colors = {
+    color1:  0x0069FF ,
+    color2:  0x3CBEF0 ,
+    color3:  0xAFDCFA ,
+    color4:  0xFFA500 ,
+    color5:  0xFFDC96 ,
+};
+// let colors = {
+//     color1: new THREE.Color( 0x0069FF ),
+//     color2: new THREE.Color( 0x3CBEF0 ),
+//     color3: new THREE.Color( 0xAFDCFA ),
+//     color4: new THREE.Color( 0xFFA500 ),
+//     color5: new THREE.Color( 0xFFDC96 ),
+// };
+// const shuffle = ([...array]) => {
+//   for (let i = array.length - 1; i >= 0; i--) {
+//     const j = Math.floor(Math.random() * (i + 1));
+//     [array[i], array[j]] = [array[j], array[i]];
+//   }
+//   return array;
+// }
+// colors = shuffle(colors)
 
 /**
  * Base
@@ -86,22 +51,22 @@ const scene = new THREE.Scene()
 /**
  * MarchingCubes
  */
-const material = new THREE.MeshPhongMaterial({color: 0xffffff, specular: 0xffffff, shininess: 2, vertexColors: THREE.VertexColors})
+const material = new THREE.MeshPhongMaterial({color: 0xffffff, specular: 0xffffff, shininess: 0, vertexColors: THREE.VertexColors})
 
 const resolution = 28
 const marchingcube = new MarchingCubes(resolution, material, false, true, 10000)
-marchingcube.scale.set(effectController.scale_x, effectController.scale_y, effectController.scale_z)
+marchingcube.scale.set(effectController.scaleX, effectController.scaleY, effectController.scaleZ)
 marchingcube.enableColors = true
 scene.add(marchingcube)
 
 /**
  * Lights
  */
-const light = new THREE.DirectionalLight(0xffffff)
-light.position.set(0, 0, 1)
+const light = new THREE.DirectionalLight(0xffffff, effectController.lightIntensity)
+light.position.set(0, 0, 100)
 scene.add(light)
 
-const ambientLight = new THREE.AmbientLight(0xffeded)
+const ambientLight = new THREE.AmbientLight(0xffffff)
 scene.add(ambientLight)
 
 /**
@@ -167,7 +132,7 @@ function updateCubes(object, time, numblobs) {
         const bally = Math.abs( Math.cos( randomOffset + i + 1.12 * time * Math.cos( 1.22 + 0.1424 * i ) ) ) * 0.6 + 0.2; // dip into the floor
         const ballz = Math.cos( randomOffset + i + 1.32 * time * 0.1 * Math.sin( ( 0.92 + 0.53 * i ) ) ) * 0.27 + 0.5
 
-        object.addBall( ballx, bally, ballz, strength, subtract, rainbow[i % 7] )
+        object.addBall( ballx, bally, ballz, strength, subtract, colors[`color${i%5+1}`] )
 
     }
 
@@ -179,10 +144,14 @@ let time = 0
 const tick = () =>
 {
     const delta = clock.getDelta()
-    time += delta * effectController.speed * 0.5
+    time += delta * effectController.ballSpeed * 0.5
 
     // Animate marchingcube
     updateCubes(marchingcube, time, effectController.numBlobs)
+
+    marchingcube.scale.set(effectController.scaleX, effectController.scaleY, effectController.scaleZ)
+    marchingcube.isolation = effectController.isolation;
+    light.intensity = effectController.lightIntensity;
 
     // Render
     renderer.render(scene, camera)
