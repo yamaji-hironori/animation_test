@@ -1,4 +1,4 @@
-const change_opacity = () => {
+const changeOpacity = () => {
     const clientHeight = root_element.clientHeight;
     const webGlTopFromWindowTop = document.getElementById('WebglScrollArea').getBoundingClientRect().top;
     const webGlBottmFromWindowTop = document.getElementById('WebglScrollArea').getBoundingClientRect().bottom;
@@ -16,7 +16,7 @@ const change_opacity = () => {
 }
 
 window.addEventListener('scroll', function(e) {
-    change_opacity();
+    changeOpacity();
 });
 
-window.onload = change_opacity;
+window.onload = changeOpacity;
