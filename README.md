@@ -14,7 +14,7 @@ MarchingCubes アニメーションのために以下のライブラリを読み
 ```
 ## 手順３：`canvas`要素の準備
 手順２で読み込んだモジュール(Webgl.js)は、"Webgl"id属性を持つcanvas要素に対して、描画を行います。<br>
-そのため、"Webgl"id属性を持つcanvas要素が必須となります。
+そのため、以下の要素が必須となります。
 ```html
       <canvas id="Webgl"></canvas>
 ```
