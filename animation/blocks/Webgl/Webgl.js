@@ -1,3 +1,6 @@
+// Canvas
+const canvas = document.querySelector('canvas#Webgl')
+
 const effectController = {
     ballSpeed: 0.1, // speed of ball movement
     numBlobs: 20, // number of balls
@@ -22,12 +25,6 @@ let colors = {
     color4:  0xFFA500 ,
     color5:  0xFFDC96 ,
 };
-
-/**
- * Base
- */
-// Canvas
-const canvas = document.querySelector('canvas#Webgl')
 
 // Scene
 const scene = new THREE.Scene()
