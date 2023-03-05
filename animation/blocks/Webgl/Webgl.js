@@ -34,8 +34,8 @@ const scene = new THREE.Scene()
  */
 const material = new THREE.MeshPhongMaterial({color: 0xffffff, specular: 0xffffff, shininess: 0, vertexColors: THREE.VertexColors})
 
-const resolution = 28
-const marchingcube = new MarchingCubes(resolution, material, false, true, 10000)
+const resolution = 18
+const marchingcube = new MarchingCubes(resolution, material, false, true, 3000)
 marchingcube.scale.set(effectController.scaleX, effectController.scaleY, effectController.scaleZ)
 marchingcube.enableColors = true
 scene.add(marchingcube)
